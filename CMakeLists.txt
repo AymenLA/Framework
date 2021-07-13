@@ -11,7 +11,7 @@ set(GRAPHICS_SOURCE_DIR app/Graphics/src )
 
 set(GRAPHICS_INCLUDE_DIR app/Graphics/include )
 
-# source files and header files for the engine
+# source files and header files for the Graphics
 set(GRAPHICS_SOURCES 
     ${GRAPHICS_SOURCE_DIR}/Graphics.cpp
     )
@@ -32,6 +32,20 @@ set(GAME_MANAGER_SOURCES
 
 set(GAME_MANAGER_HEADERS 
     ${GAME_MANAGER_INCLUDE_DIR}/GameManager.h
+    )
+
+# sources and headers dir for the Timer
+set(TIMER_SOURCE_DIR app/Timer/src )
+
+set(TIMER_INCLUDE_DIR app/Timer/include )
+
+# source files and header files for the Timer
+set(TIMER_SOURCES 
+    ${TIMER_SOURCE_DIR}/Timer.cpp
+    )
+
+set(TIMER_HEADERS 
+    ${TIMER_INCLUDE_DIR}/Timer.h
     )
 
 # sources and headers dir for the main
@@ -59,12 +73,14 @@ include_directories(${SDL2_INCLUDE_DIRS}
                     ${SDL2TTF_INCLUDE_DIRS}
                     ${GRAPHICS_INCLUDE_DIR} 
                     ${GAME_MANAGER_INCLUDE_DIR} 
+                    ${TIMER_INCLUDE_DIR} 
                     )
 
 # main file will be the master of the opration
 
 set(TARGET_SOURCES_FILES 
     ${GRAPHICS_SOURCES}
+    ${TIMER_SOURCES}
     ${GAME_MANAGER_SOURCES} 
     ${MAIN_SOURCES}
     )
@@ -72,6 +88,7 @@ set(TARGET_SOURCES_FILES
 set(TARGET_HEADER_FILES 
     ${SDL2_INCLUDE_DIRS} 
     ${GRAPHICS_HEADERS}
+    ${TIMER_HEADERS}
     ${GAME_MANAGER_HEADERS} 
     )
 

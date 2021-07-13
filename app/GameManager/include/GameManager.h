@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include "Graphics.h"
+#include "Timer.h"
 
 class GameManager {
 
@@ -24,7 +25,11 @@ private:
     bool mQuit;
     Graphics* mGraphics;
 
+    Timer* mTimer;
+
     SDL_Event mEvents;
+
+    const uint32_t FRAME_RATE = 60U;
   
 };
 

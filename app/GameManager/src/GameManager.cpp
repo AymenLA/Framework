@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "GameManager.h"
 #include "Graphics.h"
+#include "Timer.h"
 
 GameManager* GameManager::sInstance = nullptr;
 
@@ -25,6 +26,8 @@ GameManager::GameManager() : mQuit(false){
     if(false == Graphics::Initialized()){
         mQuit = true;
     }
+
+    mTimer = Timer::Instance();
 }
 
 
@@ -33,6 +36,9 @@ GameManager::~GameManager(){
 
     Graphics::Release();
     mGraphics = nullptr;
+
+    Timer::Release();
+    mTimer = nullptr;
 }
 
 
@@ -48,13 +54,20 @@ void GameManager::Run(void){
 
     while(false == mQuit){
 
+        mTimer->Update();
+
         while(SDL_PollEvent(&mEvents) != 0){
             if(mEvents.type == SDL_QUIT){
 
                 mQuit = true;
             }
-
-            mGraphics->Render();
         }
+
+        if(mTimer->DeltaTime() >= (1.0f / FRAME_RATE)){
+            printf("DeltaTimer = %F\n", mTimer->DeltaTime());
+            mGraphics->Render();
+            mTimer->Reset();
+        }
+
     }
 }
