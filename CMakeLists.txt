@@ -48,6 +48,36 @@ set(TIMER_HEADERS
     ${TIMER_INCLUDE_DIR}/Timer.h
     )
 
+
+# sources and headers dir for the Helpers
+set(HELPERS_SOURCE_DIR app/Helpers/src )
+
+set(HELPERS_INCLUDE_DIR app/Helpers/include )
+
+# source files and header files for the Timer
+set(HELPERS_SOURCES 
+    ${TIMER_SOURCE_DIR}/
+    )
+
+set(TIMER_HEADERS 
+    ${HELPERS_INCLUDE_DIR}/MathHelper.h
+    )
+
+# sources and headers dir for the Game Entity
+set(ENTITIES_SOURCE_DIR app/Entities/src )
+
+set(ENTITIES_INCLUDE_DIR app/Entities/include )
+
+# source files and header files for the Game Entity
+set(ENTITIES_SOURCES 
+    ${ENTITIES_SOURCE_DIR}/GameEntity.cpp
+    )
+
+set(ENTITIES_HEADERS 
+    ${ENTITIES_INCLUDE_DIR}/GameEntity.h
+    )
+
+
 # sources and headers dir for the main
 set(MAIN_SOURCE_DIR app/main )
 
@@ -74,6 +104,8 @@ include_directories(${SDL2_INCLUDE_DIRS}
                     ${GRAPHICS_INCLUDE_DIR} 
                     ${GAME_MANAGER_INCLUDE_DIR} 
                     ${TIMER_INCLUDE_DIR} 
+                    ${HELPERS_INCLUDE_DIR}
+                    ${ENTITIES_INCLUDE_DIR} 
                     )
 
 # main file will be the master of the opration
@@ -82,6 +114,8 @@ set(TARGET_SOURCES_FILES
     ${GRAPHICS_SOURCES}
     ${TIMER_SOURCES}
     ${GAME_MANAGER_SOURCES} 
+    ${HELPERS_SOURCES}
+    ${ENTITIES_SOURCES} 
     ${MAIN_SOURCES}
     )
 
@@ -89,6 +123,8 @@ set(TARGET_HEADER_FILES
     ${SDL2_INCLUDE_DIRS} 
     ${GRAPHICS_HEADERS}
     ${TIMER_HEADERS}
+    ${HELPERS_HEADERS}
+    ${ENTITIES_HEADERS}
     ${GAME_MANAGER_HEADERS} 
     )
 

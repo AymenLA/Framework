@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "Graphics.h"
 #include "Timer.h"
+#include "GameEntity.h"
 
 class GameManager {
 
@@ -26,6 +27,9 @@ private:
     Graphics* mGraphics;
 
     Timer* mTimer;
+
+    GameEntity* mParent;
+    GameEntity* mChild;
 
     SDL_Event mEvents;
 

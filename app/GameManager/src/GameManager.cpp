@@ -28,6 +28,17 @@ GameManager::GameManager() : mQuit(false){
     }
 
     mTimer = Timer::Instance();
+
+    mParent = new GameEntity(100.0f, 400.0f);
+    mChild = new GameEntity(100.0f, 500.0f);
+
+    printf("Child local pos: (%F, %F)\n", mChild->Pos(GameEntity::local).x, 
+                                          mChild->Pos(GameEntity::local).y);
+
+    mChild->SetParent(mParent);
+
+    printf("Child local pos: (%F, %F)\n", mChild->Pos(GameEntity::local).x, 
+                                          mChild->Pos(GameEntity::local).y);
 }
 
 
@@ -39,6 +50,9 @@ GameManager::~GameManager(){
 
     Timer::Release();
     mTimer = nullptr;
+
+    delete mParent;
+    delete mChild;
 }
 
 
@@ -64,7 +78,7 @@ void GameManager::Run(void){
         }
 
         if(mTimer->DeltaTime() >= (1.0f / FRAME_RATE)){
-            printf("DeltaTimer = %F\n", mTimer->DeltaTime());
+
             mGraphics->Render();
             mTimer->Reset();
         }
