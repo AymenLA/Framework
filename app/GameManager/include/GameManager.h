@@ -6,6 +6,7 @@
 #include "Graphics.h"
 #include "Timer.h"
 #include "GameEntity.h"
+#include "Texture.h"
 
 class GameManager {
 
@@ -27,6 +28,8 @@ private:
     Graphics* mGraphics;
 
     Timer* mTimer;
+
+    Texture* mTexture;
 
     GameEntity* mParent;
     GameEntity* mChild;

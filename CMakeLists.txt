@@ -71,10 +71,12 @@ set(ENTITIES_INCLUDE_DIR app/Entities/include )
 # source files and header files for the Game Entity
 set(ENTITIES_SOURCES 
     ${ENTITIES_SOURCE_DIR}/GameEntity.cpp
+    ${ENTITIES_SOURCE_DIR}/Texture.cpp
     )
 
 set(ENTITIES_HEADERS 
     ${ENTITIES_INCLUDE_DIR}/GameEntity.h
+    ${ENTITIES_INCLUDE_DIR}/Texture.h
     )
 
 

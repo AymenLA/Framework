@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "GameManager.h"
 #include "Graphics.h"
+#include "GameEntity.h"
+#include "Texture.h"
 #include "Timer.h"
 
 GameManager* GameManager::sInstance = nullptr;
@@ -29,16 +31,10 @@ GameManager::GameManager() : mQuit(false){
 
     mTimer = Timer::Instance();
 
-    mParent = new GameEntity(100.0f, 400.0f);
-    mChild = new GameEntity(100.0f, 500.0f);
+    std::string path = SDL_GetBasePath();
+    path.append("Assets/galaga.png");
 
-    printf("Child local pos: (%F, %F)\n", mChild->Pos(GameEntity::local).x, 
-                                          mChild->Pos(GameEntity::local).y);
-
-    mChild->SetParent(mParent);
-
-    printf("Child local pos: (%F, %F)\n", mChild->Pos(GameEntity::local).x, 
-                                          mChild->Pos(GameEntity::local).y);
+    mTexture = new Texture(path);
 }
 
 
@@ -51,8 +47,8 @@ GameManager::~GameManager(){
     Timer::Release();
     mTimer = nullptr;
 
-    delete mParent;
-    delete mChild;
+    delete mTexture;
+    mTexture = nullptr;
 }
 
 
@@ -79,7 +75,12 @@ void GameManager::Run(void){
 
         if(mTimer->DeltaTime() >= (1.0f / FRAME_RATE)){
 
+            mGraphics->ClearBackBuffer();
+
+            mTexture->Render();
+
             mGraphics->Render();
+
             mTimer->Reset();
         }
 
