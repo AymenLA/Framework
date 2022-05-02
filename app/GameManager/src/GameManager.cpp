@@ -32,7 +32,7 @@ GameManager::GameManager() : mQuit(false){
     mTimer = Timer::Instance();
 
     std::string path = SDL_GetBasePath();
-    path.append("Assets/galaga.png");
+    path.append("../extra/Assets/galaga.png");
 
     mTexture = new Texture(path);
 }
