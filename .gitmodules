@@ -1,0 +1,6 @@
+[submodule "buildtools/cmake/SDL2"]
+	path = buildtools/cmake/SDL2
+	url = git@github.com:AymenLA/SDL2_CMakeFiles.git
+[submodule "external/googletest"]
+	path = external/googletest
+	url = https://github.com/google/googletest.git
