@@ -72,11 +72,13 @@ set(ENTITIES_INCLUDE_DIR app/Entities/include )
 set(ENTITIES_SOURCES 
     ${ENTITIES_SOURCE_DIR}/GameEntity.cpp
     ${ENTITIES_SOURCE_DIR}/Texture.cpp
+    ${ENTITIES_SOURCE_DIR}/AssetManager.cpp
     )
 
 set(ENTITIES_HEADERS 
     ${ENTITIES_INCLUDE_DIR}/GameEntity.h
     ${ENTITIES_INCLUDE_DIR}/Texture.h
+    ${ENTITIES_INCLUDE_DIR}/AssetManager.h
     )
 
 
@@ -95,6 +97,9 @@ set(CMAKE_MODULE_PATH FindSDL2.cmake FindSDL2_image.cmake FindSDL2_ttf.cmake)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_ttf REQUIRED)
 find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(SDL2_gfx REQUIRED)
+find_package(SDL2_net REQUIRED)
 
 # the install dir
 set(INSTALL_DIR build/install/usr/local/bin)
@@ -139,4 +144,12 @@ add_executable(Framework
                 ${TARGET_HEADER_FILES}
                 )
 
-target_link_libraries(Framework ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${SDL2TTF_LIBRARIES})
+target_link_libraries(
+        Framework 
+        ${SDL2_LIBRARIES} 
+        ${SDL2IMAGE_LIBRARIES} 
+        ${SDL2TTF_LIBRARIES}
+        ${SDL2GFX_LIBRARIES} 
+        ${SDL2MIXER_LIBRARIES}
+        ${SDL2NET_LIBRARIES}
+)
