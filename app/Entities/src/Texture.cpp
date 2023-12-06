@@ -1,24 +1,26 @@
 #include "Texture.h"
 #include <string.h>
+#include "iostream"
 
-//---------------------------------------------------------------------------------------------//
-Texture::Texture(std::string path){
+//---------------------------------------------------------------------------//
+Texture::Texture(std::string filename){
 
     mGraphics = Graphics::Instance();
 
-    mTexture = mGraphics->LoadTexture(path);
+    mTexture = AssetManager::Instance()->GetTexture(filename);
+
+    SDL_QueryTexture(mTexture, NULL, NULL, &mWidth, &mHeight);
 }
 
 
-//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 Texture::~Texture(){
 
-    SDL_DestroyTexture(mTexture);
     mTexture = nullptr;
     mGraphics = nullptr;
 }
 
-//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 void Texture::Render(void){
 
     mGraphics->DrawTexture(mTexture);

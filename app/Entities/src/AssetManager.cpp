@@ -2,6 +2,8 @@
 
 AssetManager* AssetManager::sInstance = nullptr;
 
+
+//---------------------------------------------------------------------------//
 AssetManager* AssetManager::Instance() {
     if(sInstance == NULL) {
         sInstance = new AssetManager();
@@ -10,6 +12,8 @@ AssetManager* AssetManager::Instance() {
     return sInstance;
 }
 
+
+//---------------------------------------------------------------------------//
 void AssetManager::Release() {
     delete sInstance;
     sInstance = nullptr;
@@ -19,6 +23,8 @@ AssetManager::AssetManager() {
 
 }
 
+
+//---------------------------------------------------------------------------//
 AssetManager::~AssetManager() {
     for(auto tex : mTexture) {
         if(tex.second != nullptr)
@@ -30,9 +36,11 @@ AssetManager::~AssetManager() {
     mTexture.clear();
 }
 
+
+//---------------------------------------------------------------------------//
 SDL_Texture* AssetManager::GetTexture(std::string filename) {
     std::string fullPath = SDL_GetBasePath();
-    fullPath.append("Assets/" + filename);
+    fullPath.append("../extra/Assets/" + filename);
 
     if(mTexture[fullPath] == nullptr) {
         mTexture[fullPath] = Graphics::Instance()->LoadTexture(fullPath);

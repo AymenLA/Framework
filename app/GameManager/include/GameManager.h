@@ -26,6 +26,7 @@ private:
     static GameManager* sInstance;
     bool mQuit;
     Graphics* mGraphics;
+    AssetManager* mAssetManager;
 
     Timer* mTimer;
 

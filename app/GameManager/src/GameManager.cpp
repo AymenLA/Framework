@@ -9,7 +9,7 @@
 GameManager* GameManager::sInstance = nullptr;
 
 
-//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 GameManager* GameManager::Instance(void){
 
     if(nullptr == sInstance){
@@ -20,7 +20,7 @@ GameManager* GameManager::Instance(void){
 }
 
 
-//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 GameManager::GameManager() : mQuit(false){
 
     mGraphics = Graphics::Instance();
@@ -31,14 +31,13 @@ GameManager::GameManager() : mQuit(false){
 
     mTimer = Timer::Instance();
 
-    std::string path = SDL_GetBasePath();
-    path.append("../extra/Assets/galaga.png");
+    mAssetManager = AssetManager::Instance();
 
-    mTexture = new Texture(path);
+    mTexture = new Texture("galaga.png");
 }
 
 
-//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 GameManager::~GameManager(){
 
     Graphics::Release();
@@ -47,19 +46,22 @@ GameManager::~GameManager(){
     Timer::Release();
     mTimer = nullptr;
 
+    AssetManager::Release();
+    mAssetManager = nullptr;
+
     delete mTexture;
     mTexture = nullptr;
 }
 
 
-//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 void GameManager::Release(){
 
     delete sInstance;
     sInstance = nullptr;
 }
 
-//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 void GameManager::Run(void){
 
     while(false == mQuit){
